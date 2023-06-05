@@ -1,0 +1,68 @@
+﻿@model IEnumerable<FrontSeccion.Models.Seccion>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    @*<a asp-action="Create">Create New</a>*@
+    <a class="btn btn-success" asp-action="Create">Create New</a>
+
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @*@Html.DisplayNameFor(model => model.aula_sec)*@
+                AULA
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.estado_sec)*@
+                ESTADO
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.fecha_registro_sec)*@
+                FECHA DE REGISTRO
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.Curso)*@
+                CURSO
+            </th>
+            <th>
+                MANTENIMIENTO
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.aula_sec)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.estado_sec)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha_registro_sec)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Curso.descripcion_cur)
+            </td>
+            <td>
+                @*<a asp-action="Edit" asp-route-id="@item.id_sec">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.id_sec">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.id_sec">Delete</a>*@
+                    <button class="btn btn-success" type="button" id="btn_exportar" name="btn_exportar" onclick="location.href='../Seccions/ExportarAlumnosAExcel?idSec=@item.id_sec'"><span class="glyphicon glyphicon-download-alt"> Excel</span></button>
+                    <button class="btn btn-primary" type="button" id="btn_exportar" name="btn_exportar" onclick="location.href='../Seccions/ExportarAlumnosAPdf?idSec=@item.id_sec'"><span class="glyphicon glyphicon-download-alt"> PDF</span></button>
+                    <a class="btn btn-secondary" asp-action="Edit" asp-route-id="@item.id_sec">Edit</a>
+                    <a class="btn btn-info" asp-action="Details" asp-route-id="@item.id_sec">Details</a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.id_sec">Delete</a>
+
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

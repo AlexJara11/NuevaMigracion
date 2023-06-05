@@ -1,0 +1,72 @@
+﻿@model IEnumerable<FrontSeccion.Models.Alumno>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    @*<a asp-action="Create">Create New</a>*@
+    <a class="btn btn-success" asp-action="Create">Create New</a>
+
+</p>
+
+
+<div class="mb-3">
+    <form asp-controller="Alumnoes" asp-action="Busqueda" method="get">
+        <div class="input-group">
+            <input type="text" class="form-control" name="searchString" placeholder="Search by DNI">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">Search</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @*@Html.DisplayNameFor(model => model.dni_alu)*@
+                DNI
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.nombre_alu)*@
+                NOMBRE
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.apellidos_alu)*@
+                APELLIDO
+            </th>
+            <th>
+                MANTENIMIENTO
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.dni_alu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre_alu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.apellidos_alu)
+            </td>
+            <td>
+                @*<a asp-action="Edit" asp-route-id="@item.id_alu">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.id_alu">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.id_alu">Delete</a>*@
+                    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.id_alu">Edit</a> |
+                    <a class="btn btn-secondary" asp-action="Details" asp-route-id="@item.id_alu">Details</a> |
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.id_alu">Delete</a>
+
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

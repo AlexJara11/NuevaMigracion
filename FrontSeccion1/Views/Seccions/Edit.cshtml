@@ -1,0 +1,49 @@
+﻿@model FrontSeccion.Models.Seccion
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Seccion</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="id_sec" />
+            <div class="form-group">
+                <label asp-for="aula_sec" class="control-label"></label>
+                <input asp-for="aula_sec" class="form-control" />
+                <span asp-validation-for="aula_sec" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CursoId" class="control-label"></label>
+                <select asp-for="CursoId" class="form-control" asp-items="ViewBag.CursoId"></select>
+                <span asp-validation-for="CursoId" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="estado_sec" /> @Html.DisplayNameFor(model => model.estado_sec)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="fecha_registro_sec" class="control-label"></label>
+                <input asp-for="fecha_registro_sec" class="form-control" />
+                <span asp-validation-for="fecha_registro_sec" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
